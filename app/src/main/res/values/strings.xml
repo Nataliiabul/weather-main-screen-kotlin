@@ -1,3 +1,20 @@
 <resources>
     <string name="app_name">WeatherMainScreen</string>
+    <string name="bg_content_description">bg screen</string>
+
+    <string name="city">Moscow, Russia</string>
+    <string name="updated_at">Updated at</string>
+    <string name="degree_value">29°</string>
+
+    <string name="sunrise">Sunrise</string>
+    <string name="sunrise_value">5:34am</string>
+    <string name="sunset">Sunset</string>
+    <string name="sunset_value">6:54pm</string>
+    <string name="wind">Wind</string>
+    <string name="wind_value">3.1</string>
+    <string name="humidity">Humidity</string>
+    <string name="humidity_value">54</string>
+    <string name="pressure">Pressure</string>
+    <string name="pressure_value">1016</string>
+
 </resources>
