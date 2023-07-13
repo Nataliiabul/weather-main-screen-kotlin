@@ -18,8 +18,9 @@
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent" />
 
-    <!-- Top main section -->
+    <!-- Top section -->
     <LinearLayout
+        android:id="@+id/top_section"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         app:layout_constraintStart_toStartOf="parent"
@@ -47,11 +48,11 @@
             android:fontFamily="@font/noto_sans"/>
 
         <TextView
-            android:id="@+id/degree"
+            android:id="@+id/temperature"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:includeFontPadding="false"
-            tools:text="@string/degree_value"
+            tools:text="@string/temperature"
             android:textColor="@color/white"
             android:textSize="@dimen/_100ssp"
             android:fontFamily="@font/noto_sans"/>
@@ -233,10 +234,12 @@
         android:visibility="gone">
 
         <ProgressBar
+            android:id="@+id/loading"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:indeterminateTint="@color/white"/>
         <TextView
+            android:id="@+id/error_text"
             android:text="@string/error_text"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
@@ -245,7 +248,5 @@
             android:textColor="@color/white"
             android:paddingTop="@dimen/_7sdp"/>
     </LinearLayout>
-
-
 
 </androidx.constraintlayout.widget.ConstraintLayout>

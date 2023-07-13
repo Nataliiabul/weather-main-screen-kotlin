@@ -4,7 +4,7 @@
 
     <string name="location">Moscow, Russia</string>
     <string name="updated_at">Updated at</string>
-    <string name="degree_value">29°</string>
+    <string name="temperature">29°</string>
 
     <string name="sunrise">Sunrise</string>
     <string name="sunrise_value">5:34am</string>
