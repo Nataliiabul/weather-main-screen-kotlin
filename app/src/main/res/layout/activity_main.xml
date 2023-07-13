@@ -29,10 +29,10 @@
         android:layout_marginTop="@dimen/_45sdp">
 
         <TextView
-            android:id="@+id/city"
+            android:id="@+id/location"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="@string/city"
+            tools:text="@string/location"
             android:textColor="@color/white"
             android:textSize="@dimen/_25ssp"
             android:fontFamily="@font/noto_sans"/>
@@ -51,7 +51,7 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:includeFontPadding="false"
-            android:text="@string/degree_value"
+            tools:text="@string/degree_value"
             android:textColor="@color/white"
             android:textSize="@dimen/_100ssp"
             android:fontFamily="@font/noto_sans"/>
@@ -88,17 +88,20 @@
                 android:orientation="vertical"
                 android:gravity="center">
                 <TextView
+                    android:id="@+id/sunrise"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:text="@string/sunrise_value"
+                    tools:text="@string/sunrise_value"
                     android:textColor="@color/white"
-                    android:textSize="@dimen/_20sdp"/>
+                    android:textSize="@dimen/_20sdp"
+                    android:fontFamily="@font/noto_sans"/>
                 <TextView
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:text="@string/sunrise"
                     android:textColor="@color/white"
-                    android:textSize="@dimen/_13sdp"/>
+                    android:textSize="@dimen/_13sdp"
+                    android:fontFamily="@font/noto_sans"/>
             </LinearLayout>
 
             <!-- Item row sunset info -->
@@ -109,27 +112,31 @@
                 android:orientation="vertical"
                 android:gravity="center">
                 <TextView
+                    android:id="@+id/sunset"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:text="@string/sunset_value"
+                    tools:text="@string/sunset_value"
                     android:textColor="@color/white"
-                    android:textSize="@dimen/_20sdp"/>
+                    android:textSize="@dimen/_20sdp"
+                    android:fontFamily="@font/noto_sans"/>
                 <TextView
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:text="@string/sunset"
                     android:textColor="@color/white"
-                    android:textSize="@dimen/_13sdp"/>
+                    android:textSize="@dimen/_13sdp"
+                    android:fontFamily="@font/noto_sans"/>
             </LinearLayout>
 
         </LinearLayout>
 
+        <!-- Line -->
         <View
             android:layout_width="match_parent"
             android:layout_height="1dp"
             android:background="@color/white"
-            android:layout_marginTop="@dimen/_7sdp"
-            android:layout_marginBottom="@dimen/_7sdp"/>
+            android:layout_marginTop="@dimen/_15sdp"
+            android:layout_marginBottom="@dimen/_15sdp"/>
 
         <!-- Second row sunrise info -->
         <LinearLayout
@@ -145,17 +152,20 @@
                 android:orientation="vertical"
                 android:gravity="center">
                 <TextView
+                    android:id="@+id/wind"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:text="@string/wind_value"
+                    tools:text="@string/wind_value"
                     android:textColor="@color/white"
-                    android:textSize="@dimen/_20sdp"/>
+                    android:textSize="@dimen/_20sdp"
+                    android:fontFamily="@font/noto_sans"/>
                 <TextView
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:text="@string/wind"
                     android:textColor="@color/white"
-                    android:textSize="@dimen/_13sdp"/>
+                    android:textSize="@dimen/_13sdp"
+                    android:fontFamily="@font/noto_sans"/>
             </LinearLayout>
 
             <!-- Item row humidity info -->
@@ -166,17 +176,20 @@
                 android:orientation="vertical"
                 android:gravity="center">
                 <TextView
+                    android:id="@+id/humidity"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:text="@string/humidity_value"
+                    tools:text="@string/humidity_value"
                     android:textColor="@color/white"
-                    android:textSize="@dimen/_20sdp"/>
+                    android:textSize="@dimen/_20sdp"
+                    android:fontFamily="@font/noto_sans"/>
                 <TextView
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:text="@string/humidity"
                     android:textColor="@color/white"
-                    android:textSize="@dimen/_13sdp"/>
+                    android:textSize="@dimen/_13sdp"
+                    android:fontFamily="@font/noto_sans"/>
             </LinearLayout>
 
             <!-- Item row pressure info -->
@@ -187,21 +200,52 @@
                 android:orientation="vertical"
                 android:gravity="center">
                 <TextView
+                    android:id="@+id/pressure"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:text="@string/pressure_value"
+                    tools:text="@string/pressure_value"
                     android:textColor="@color/white"
-                    android:textSize="@dimen/_20sdp"/>
+                    android:textSize="@dimen/_20sdp"
+                    android:fontFamily="@font/noto_sans"/>
                 <TextView
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:text="@string/pressure"
                     android:textColor="@color/white"
-                    android:textSize="@dimen/_13sdp"/>
+                    android:textSize="@dimen/_13sdp"
+                    android:fontFamily="@font/noto_sans"/>
             </LinearLayout>
 
         </LinearLayout>
 
     </LinearLayout>
+
+    <!-- Error section -->
+    <LinearLayout
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        android:orientation="vertical"
+        android:gravity="center"
+        android:visibility="gone">
+
+        <ProgressBar
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:indeterminateTint="@color/white"/>
+        <TextView
+            android:text="@string/error_text"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:textSize="@dimen/_17ssp"
+            android:fontFamily="@font/noto_sans"
+            android:textColor="@color/white"
+            android:paddingTop="@dimen/_7sdp"/>
+    </LinearLayout>
+
+
 
 </androidx.constraintlayout.widget.ConstraintLayout>
