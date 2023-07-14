@@ -2,6 +2,7 @@ package com.example.weathermainscreen
 
 import android.os.AsyncTask
 import android.os.Bundle
+import android.util.Log
 import android.view.View
 import android.widget.LinearLayout
 import android.widget.ProgressBar
@@ -13,18 +14,25 @@ import java.nio.charset.Charset
 import java.text.SimpleDateFormat
 import java.util.Date
 import java.util.Locale
+import java.util.Properties
 import java.util.logging.SimpleFormatter
 
 
 class MainActivity : AppCompatActivity() {
     val location: String = "dhaka, bd"
-    val api: String = "hjk"
+    private lateinit var api: String
+
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_main)
+
+        // Get api from local.properties
+        val properties = Properties()
+        val inputStream = assets.open("config.properties")
+        properties.load(inputStream)
+        api = properties.getProperty("api_key")
+
         showCustomUI()
-
-
     }
     private fun showCustomUI() {
         val decorView = window.decorView
