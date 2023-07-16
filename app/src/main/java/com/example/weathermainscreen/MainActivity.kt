@@ -19,7 +19,7 @@ import java.util.logging.SimpleFormatter
 
 
 class MainActivity : AppCompatActivity() {
-    val location: String = "dhaka, bd"
+    val location: String = "Moscow, RU"
     private lateinit var api: String
 
     override fun onCreate(savedInstanceState: Bundle?) {
@@ -33,6 +33,7 @@ class MainActivity : AppCompatActivity() {
         api = properties.getProperty("api_key")
 
         showCustomUI()
+        weatherTask().execute()
     }
     private fun showCustomUI() {
         val decorView = window.decorView
@@ -42,6 +43,7 @@ class MainActivity : AppCompatActivity() {
     }
 
     inner class weatherTask() : AsyncTask<String, Void, String>(){
+
         override fun onPreExecute() {
             super.onPreExecute()
             findViewById<ProgressBar>(R.id.loading).visibility = View.VISIBLE
@@ -67,16 +69,14 @@ class MainActivity : AppCompatActivity() {
                 val main = jsonObj.getJSONObject("main")
                 val sys = jsonObj.getJSONObject("sys")
                 val wind = jsonObj.getJSONObject("wind")
-                val weather = jsonObj.getJSONArray("weather").getJSONObject(0)
                 val updatedAt: Long = jsonObj.getLong("dt")
                 val updatedAtText = "Updated at: " + SimpleDateFormat("dd/MM/yyyy hh:mm a", Locale.ENGLISH).format(Date(updatedAt*1000))
-                val temperature = main.getString("temp") + "°C"
+                val temperature = main.getDouble("temp").toInt().toString() + "°C"
                 val pressure = main.getString("pressure")
                 val humidity = main.getString("humidity")
-                val sunrise: Long = sys.getLong("sunrise")
-                val sunset: Long = sys.getLong("sunset")
+                val sunrise:Long = sys.getLong("sunrise")
+                val sunset:Long = sys.getLong("sunset")
                 val windSpeed = wind.getString("speed")
-                val weatherDescription = weather.getString("description")
                 val address = jsonObj.getString("name") + ", " + sys.getString("country")
 
                 findViewById<TextView>(R.id.location).text = address
