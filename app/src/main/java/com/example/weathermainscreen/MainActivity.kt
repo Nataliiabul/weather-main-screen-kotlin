@@ -8,6 +8,7 @@ import android.widget.LinearLayout
 import android.widget.ProgressBar
 import android.widget.TextView
 import androidx.appcompat.app.AppCompatActivity
+import com.example.weathermainscreen.databinding.ActivityMainBinding
 import org.json.JSONObject
 import java.net.URL
 import java.nio.charset.Charset
@@ -19,14 +20,16 @@ import java.util.logging.SimpleFormatter
 
 
 class MainActivity : AppCompatActivity() {
+    private lateinit var binding: ActivityMainBinding
     val location: String = "Moscow, RU"
     private lateinit var api: String
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-        setContentView(R.layout.activity_main)
+        binding = ActivityMainBinding.inflate(layoutInflater)
+        setContentView(binding.root)
 
-        // Get api from local.properties
+        // Get api from config.properties
         val properties = Properties()
         val inputStream = assets.open("config.properties")
         properties.load(inputStream)
@@ -46,9 +49,11 @@ class MainActivity : AppCompatActivity() {
 
         override fun onPreExecute() {
             super.onPreExecute()
-            findViewById<ProgressBar>(R.id.loading).visibility = View.VISIBLE
-            findViewById<LinearLayout>(R.id.top_section).visibility = View.GONE
-            findViewById<LinearLayout>(R.id.bottom_section).visibility = View.GONE
+            binding.apply {
+                loading.visibility = View.VISIBLE
+                topSection.visibility = View.GONE
+                bottomSection.visibility = View.GONE
+            }
         }
 
         override fun doInBackground(vararg params: String?): String? {
@@ -79,21 +84,21 @@ class MainActivity : AppCompatActivity() {
                 val windSpeed = wind.getString("speed")
                 val address = jsonObj.getString("name") + ", " + sys.getString("country")
 
-                findViewById<TextView>(R.id.location).text = address
-                findViewById<TextView>(R.id.updated_at).text = updatedAtText
-                findViewById<TextView>(R.id.temperature).text = temperature
-                findViewById<TextView>(R.id.sunrise).text = SimpleDateFormat("hh:mm a", Locale.ENGLISH).format(Date(sunrise*1000))
-                findViewById<TextView>(R.id.sunset).text = SimpleDateFormat("hh:mm a", Locale.ENGLISH).format(Date(sunset*1000))
-                findViewById<TextView>(R.id.wind).text = windSpeed
-                findViewById<TextView>(R.id.pressure).text = pressure
-                findViewById<TextView>(R.id.humidity).text = humidity
+                binding.location.text = address
+                binding.updatedAt.text = updatedAtText
+                binding.temperature.text = temperature
+                binding.sunrise.text = SimpleDateFormat("hh:mm a", Locale.ENGLISH).format(Date(sunrise*1000))
+                binding.sunset.text = SimpleDateFormat("hh:mm a", Locale.ENGLISH).format(Date(sunset*1000))
+                binding.wind.text = windSpeed
+                binding.pressure.text = pressure
+                binding.humidity.text = humidity
 
-                findViewById<ProgressBar>(R.id.loading).visibility = View.GONE
-                findViewById<LinearLayout>(R.id.top_section).visibility = View.VISIBLE
-                findViewById<LinearLayout>(R.id.bottom_section).visibility = View.VISIBLE
+                binding.loading.visibility = View.GONE
+                binding.topSection.visibility = View.VISIBLE
+                binding.bottomSection.visibility = View.VISIBLE
             } catch (e: Exception) {
-                findViewById<ProgressBar>(R.id.loading).visibility = View.GONE
-                findViewById<TextView>(R.id.error_text).visibility = View.VISIBLE
+                binding.loading.visibility = View.GONE
+                binding.errorText.visibility = View.VISIBLE
             }
         }
     }
